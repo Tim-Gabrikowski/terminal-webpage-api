@@ -1,0 +1,71 @@
+openapi: 3.0.3
+info:
+  title: Homepage-API
+  description: API for my personal Homepage
+  version: 1.0.0
+servers:
+  - url: 'https://tim.gabrikowski.de/api'
+
+tags:
+  - name: Blog
+
+paths:
+  /blog/entries:
+    get:
+      tags:
+        - Blog
+      responses:
+        "200":
+          $ref: "#/components/responses/blogEntryListResponse"
+  /blog/entry/{id}:
+    get:
+      tags:
+        - Blog
+      responses:
+        "200":
+          $ref: "#/components/responses/blogEntryResponse"
+        "404":
+          description: No Entry with that id found
+
+
+components:
+  schemas:
+    blogEntryList:
+      type: array
+      items:
+        properties:
+          id:
+            type: number
+          title:
+            type: string
+
+    blogEntry:
+      type: object
+      properties:
+        id:
+          type: number
+        title:
+          type: string
+
+  responses:
+    blogEntryListResponse:
+      description: List of all Blog Entries
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/blogEntryList"
+          example:
+            - id: 1
+              title: How to start a Conversation
+            - id: 2
+              title: How to end a Conversation
+
+    blogEntryResponse:
+      description: One single Blog post
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/blogEntry"
+          example:
+            id: 1
+            title: How to get a Girlfriend as a programmer
