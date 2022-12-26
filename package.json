@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "run": "nodemon src/app.js"
+    "run": "nodemon src/app.js",
+    "docker-build": "docker build -t registry.gitlab.com/timgabhh/docker/homepage_api .",
+    "docker-push": "docker push registry.gitlab.com/timgabhh/docker/homepage_api"
   },
   "repository": {
     "type": "git",
